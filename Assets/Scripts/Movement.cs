@@ -34,7 +34,7 @@ public class Movement : MonoBehaviour {
 		dir.z = Input.acceleration.y;
 		
 		// We clean noise from the device.
-		if (!(dir.sqrMagnitude <= 0.01)){
+		if (!(dir.sqrMagnitude <= 0.05)){
 			// Apply a constant force to the ball
 			constantForce.force = new Vector3(speed * dir.x, 0, speed * dir.z);
 		}
