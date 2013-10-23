@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Movement : MonoBehaviour {
 	
-	public float moveSpeed = 5f;
+	public float speed = 20.0f;
 	
 	// Use this for initialization
 	void Start () {
@@ -14,14 +14,12 @@ public class Movement : MonoBehaviour {
 	void FixedUpdate () {
 		float hx = Input.GetAxis("Horizontal");
 		float hz = Input.GetAxis("Vertical");
-		constantForce.force = new Vector3(moveSpeed * hx, 0, moveSpeed * hz);
+		constantForce.force = new Vector3(speed * hx, 0, speed * hz);
 		
 	}
 	
 	
-	// http://docs.unity3d.com/Documentation/Manual/Input.html#AndroidInput
-	public float speed = 20.0f;
-
+	// From the doc: http://docs.unity3d.com/Documentation/Manual/Input.html#AndroidInput
 	void Update () {
 		Vector3 dir = new Vector3(0, 0, 0);
 	
@@ -35,8 +33,11 @@ public class Movement : MonoBehaviour {
 		
 		// We clean noise from the device.
 		if (!(dir.sqrMagnitude <= 0.05)){
+			// We make it easier to control.
+			// Add a flat amount in the same direction of the vector
+			dir += dir.normalized * 0.1f;
 			// Apply a constant force to the ball
-			constantForce.force = new Vector3(speed * dir.x, 0, speed * dir.z);
+			constantForce.force = dir * speed;
 		}
 	}
 }
