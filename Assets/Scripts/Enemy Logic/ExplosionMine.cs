@@ -21,7 +21,7 @@ public class ExplosionMine: MonoBehaviour {
 				// Generate explosion
 				explosionParticles.Play();
 				// Destroy self
-				Destroy(gameObject, 0.05f);
+				//Destroy(gameObject, 0.05f);
 		}
     }
 }
