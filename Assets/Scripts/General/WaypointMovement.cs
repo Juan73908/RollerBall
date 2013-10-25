@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MovementMine : MonoBehaviour {
+public class WaypointMovement : MonoBehaviour {
 
 	public float speed = 2.0f;
     public Transform[] waypoints;

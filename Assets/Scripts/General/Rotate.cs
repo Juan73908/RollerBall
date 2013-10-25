@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AnimationMine : MonoBehaviour {
+public class Rotate : MonoBehaviour {
 	
 	public float rotationSpeed = 45.0f;
 	
