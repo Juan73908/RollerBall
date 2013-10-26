@@ -1,35 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Movement : MonoBehaviour {
-	
-	public float speed = 20.0f;
-	
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void FixedUpdate () {
-		float hx = Input.GetAxis("Horizontal");
-		float hz = Input.GetAxis("Vertical");
-		constantForce.force = new Vector3(speed * hx, 0, speed * hz);
+public class MovementAndroid : MonoBehaviour {
+
 		
-	}
-	
+	public float speed = 20.0f;
 	
 	// From the doc: http://docs.unity3d.com/Documentation/Manual/Input.html#AndroidInput
 	void Update () {
+		// If we are not on Android we exit
+		if (Application.platform != RuntimePlatform.Android)
+            enabled = false;
+		
 		Vector3 dir = new Vector3(0, 0, 0);
 	
-		// we assume that the device is held parallel to the ground
+		// we assume that the device is held parallel to the ground, lightly facing to the player
 		// and the Home button is in the right hand
 	
 		// remap the device acceleration axis to game coordinates:
 		//  1) XY plane of the device is mapped onto XZ plane
 		dir.x = Input.acceleration.x;
-		dir.z = Input.acceleration.y;
+		dir.z = Input.acceleration.y + 0.25f; // More confortable to the user
 		
 		// We clean noise from the device.
 		if (!(dir.sqrMagnitude <= 0.05)){
