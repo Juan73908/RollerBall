@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MovementAndroid : MonoBehaviour {
+public class MovementMobile : MonoBehaviour {
 
 		
 	public float speed = 20.0f;
 	
 	// From the doc: http://docs.unity3d.com/Documentation/Manual/Input.html#AndroidInput
 	void Update () {
-		// If we are not on Android we exit
-		if (Application.platform != RuntimePlatform.Android)
+		// If we are not on Mobile we exit
+		if (Application.platform != RuntimePlatform.Android || Application.platform != RuntimePlatform.IPhonePlayer)
             enabled = false;
 		
 		Vector3 dir = new Vector3(0, 0, 0);

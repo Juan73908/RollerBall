@@ -8,7 +8,7 @@ public class Inventory : MonoBehaviour {
 	// We check triggers with the keys to collect them
 	void OnTriggerEnter(Collider other)
 	{
-		if (other.tag == Tags.key)
+		if (other.tag == Tags.key && !PlayerStatus.dead)
 		{
 			keysCollected += 1;
 			Destroy(other.gameObject);
