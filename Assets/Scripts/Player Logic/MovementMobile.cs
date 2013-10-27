@@ -9,7 +9,7 @@ public class MovementMobile : MonoBehaviour {
 	// From the doc: http://docs.unity3d.com/Documentation/Manual/Input.html#AndroidInput
 	void Update () {
 		// If we are not on Mobile we exit
-		if (Application.platform != RuntimePlatform.Android || Application.platform != RuntimePlatform.IPhonePlayer)
+		if (!(Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer))
             enabled = false;
 		
 		Vector3 dir = new Vector3(0, 0, 0);

@@ -9,4 +9,5 @@ public class Tags : MonoBehaviour {
 	public const string mainCamera = "MainCamera";
 	public const string enemies = "Enemy";
 	public const string key = "Key";
+	public const string diamond = "Diamond";
 }
