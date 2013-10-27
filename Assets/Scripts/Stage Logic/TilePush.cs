@@ -10,7 +10,8 @@ public class TilePush : MonoBehaviour {
 	
 	void Awake() {
 		// The direction to push the player
-		dir = GameObject.Find("PushDirection").transform.position - transform.position; 
+		dir = GameObject.Find("PushDirection").transform.position - transform.position;
+		dir.Normalize();
 	}
 	
 	
