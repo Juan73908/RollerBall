@@ -4,7 +4,6 @@ using System.Collections;
 public class TilePush : MonoBehaviour {
 
 	public float power = 1.0f;
-	public GameObject player;
 	
 	protected Vector3 dir; 
 	
@@ -19,7 +18,7 @@ public class TilePush : MonoBehaviour {
 		
         if ((other.tag == Tags.player) && (other.rigidbody)){
 			// If the ball is over the tile we push it
-			player.constantForce.force += dir * power * Time.deltaTime;
+			other.constantForce.force += dir * power * Time.deltaTime;
 		}
     }
 }
