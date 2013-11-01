@@ -15,14 +15,15 @@ public class WaypointMovement : MonoBehaviour {
 	
 	void Start()
 	{
-		if(waypoints.Length<=1)
+		if ((waypoints.Length<=1) || (waypoints[0] == null))
         {
             Debug.Log("Not enough waypoints on " + name);
-            enabled = false;
+            this.enabled = false;
+		} else {
+			// Initialize the waypoint
+			currentDestination = waypoints[targetwaypoint].position;
+			currentFacing = (currentDestination - transform.position).normalized;
 		}
-		// Initialize the waypoint
-		currentDestination = waypoints[targetwaypoint].position;
-		currentFacing = (currentDestination - transform.position).normalized;
 	}
 	
 	void FixedUpdate () 

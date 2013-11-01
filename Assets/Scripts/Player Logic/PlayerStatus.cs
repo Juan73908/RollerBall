@@ -37,8 +37,10 @@ public class PlayerStatus : MonoBehaviour {
 	
 	// Check for collisions with triggers
 	void OnTriggerEnter(Collider other) {
+			Debug.Log(other);
 		if (other.tag == Tags.enemies && !dead)
 		{
+			Debug.Log(other);
 			// The player touched an enemy!!
 			Die();
 			Debug.Log ("The player flied away... WII! :P");
