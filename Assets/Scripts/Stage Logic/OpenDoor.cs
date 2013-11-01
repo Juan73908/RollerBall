@@ -4,11 +4,12 @@ using System.Collections;
 public class OpenDoor : MonoBehaviour {
 	
 	public int requiredKeys = 1;
-	public Inventory inventory;
+	protected Inventory inventory;
 	
 	public bool open = false;
 	
 	void Start() {
+		inventory = GameObject.FindGameObjectWithTag(Tags.player).GetComponent<Inventory>();
 	}
 	
 	// Check the player inventory to open
@@ -17,7 +18,6 @@ public class OpenDoor : MonoBehaviour {
 		if ((inventory.GetKeysCollected() >= requiredKeys) && !(open))
 		{
 			// OPEN DOOR
-			Debug.Log("Opening door");
 			animation.Play();
 			open = true;
 		}

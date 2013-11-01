@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TilePush : MonoBehaviour {
 
-	public float power = 200.0f;
+	public float power = 500.0f;
 	
 	protected Vector3 dir; 
 	
