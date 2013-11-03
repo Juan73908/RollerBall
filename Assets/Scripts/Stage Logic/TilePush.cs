@@ -3,13 +3,13 @@ using System.Collections;
 
 public class TilePush : MonoBehaviour {
 
-	public float power = 500.0f;
+	public float power = 800.0f;
 	
 	protected Vector3 dir; 
 	
 	void Awake() {
 		// The direction to push the player
-		dir = GameObject.Find("PushDirection").transform.position - transform.position;
+		dir = transform.FindChild("PushDirection").position - transform.position;
 		dir.Normalize();
 	}
 	

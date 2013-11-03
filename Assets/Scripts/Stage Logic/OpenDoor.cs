@@ -20,6 +20,7 @@ public class OpenDoor : MonoBehaviour {
 			// OPEN DOOR
 			animation.Play();
 			open = true;
+			Destroy(gameObject, 2.0f);
 		}
 	}
 }
