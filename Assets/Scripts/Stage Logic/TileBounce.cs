@@ -9,7 +9,7 @@ public class TileBounce : MonoBehaviour {
 	
 	void Awake() {
 		// The direction to push the player
-		dir = GameObject.Find("BounceDirection").transform.position - transform.position;
+		dir = transform.FindChild("BounceDirection").position - transform.position;
 		dir.Normalize();
 	}
 	
