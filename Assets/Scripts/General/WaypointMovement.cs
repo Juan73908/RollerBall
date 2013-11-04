@@ -18,7 +18,7 @@ public class WaypointMovement : MonoBehaviour {
 		if ((waypoints.Length<=1) || (waypoints[0] == null))
         {
             Debug.Log("Not enough waypoints on " + name);
-            this.enabled = false;
+            enabled = false;
 		} else {
 			// Initialize the waypoint
 			currentDestination = waypoints[targetwaypoint].position;
