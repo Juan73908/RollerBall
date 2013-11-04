@@ -6,14 +6,12 @@ public class PlayerStatus : MonoBehaviour {
 	protected Vector3 startingPosition;
 	protected Quaternion startingRotation;
 	
-	// Player will be dead untill re-spawn
+	// Player will be dead untill reload level
 	public static bool dead = false;
-	public float deadTime = 2.0f; // Re-spawn cooldown	
+	public float deadTime = 2.0f;
 	
 	void Start () {
-		// Save initial values for re-spawning
-		startingPosition = transform.position;
-		startingRotation = transform.rotation;
+		dead = false;
 	}
 	
 	
@@ -45,32 +43,17 @@ public class PlayerStatus : MonoBehaviour {
 		}
 	}
 	
-	// The player should wait and re-spawn
+	// The player should wait and reload level
 	void Die(){
 		dead = true;
 		// Disable the external forces applied to the player
 		constantForce.enabled = false;
 		// Wait
-		Invoke("ReSpawn", deadTime);
+		Invoke("ReloadLevel", deadTime);
 	}
 	
-	// Called when the player comes into life again
-	void ReSpawn(){
-		// Re-enable components
-		constantForce.enabled = true;
-		// Back to the initial position
-		Reset();
-		dead = false;
-	}
-	
-	// Reset the player to the original position
-	void Reset() {
-		// We restore initial values
-		transform.position = startingPosition;
-		transform.rotation = startingRotation;
-		if (rigidbody != null) {
-			rigidbody.velocity = Vector3.zero;
-			rigidbody.angularVelocity = Vector3.zero;
-		}
+	// Reload the level when character dies or player hits reset
+	void ReloadLevel(){
+		Application.LoadLevel(Application.loadedLevel);
 	}
 }
