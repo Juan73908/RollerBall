@@ -14,14 +14,14 @@ public class ExplosionMine: MonoBehaviour {
         Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
 		
         foreach (Collider hit in colliders) {
-			// If there is a collision with the player
-            if ((hit.tag == Tags.player) && (hit.rigidbody))
+			// If there is a collision with the player or a crate
+            if (((hit.tag == Tags.player) || (hit.tag == Tags.crate)) && (hit.rigidbody)){
 				// Apply explosion force
                 hit.rigidbody.AddExplosionForce(power, explosionPos, radius, upwardsModifier);
 				// Generate explosion
 				explosionParticles.Play();
-				// Destroy self
-				Destroy(transform.parent.gameObject, 0.05f);
+			}
 		}
+		Debug.Log (other);
     }
 }

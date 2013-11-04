@@ -30,8 +30,9 @@ public class WaypointMovement : MonoBehaviour {
 	{
 		// Calculate the next position of the gameObject
 		Vector3 nextPosition = transform.position + currentFacing * speed * Time.deltaTime;
-		// Check if the next position passes the destination
-		if ((nextPosition - transform.position).sqrMagnitude >= (currentDestination - transform.position).sqrMagnitude)
+		// Check if the next position passes the destination (also check if is close to 0)
+		if ((Vector3.Distance(nextPosition, transform.position) >= Vector3.Distance(currentDestination, transform.position)
+			|| Vector3.Distance(currentDestination, transform.position) < 0.0001))
 		{
 			// Stop at the target without passing it
 			nextPosition = waypoints[targetwaypoint].position;
