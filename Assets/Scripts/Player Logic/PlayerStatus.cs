@@ -10,13 +10,16 @@ public class PlayerStatus : MonoBehaviour {
 	public static bool dead = false;
 	public float deadTime = 2.0f;
 	
+	// The height at which the ball is considered fallen
+	public float deadOnY = -1.0f;
+	
 	void Start () {
 		dead = false;
 	}
 	
 	
 	void Update () {
-		if (transform.position.y < -1 && !dead){
+		if (transform.position.y < deadOnY && !dead){
 			// The ball fell!
 			Die();
 			Debug.Log("The player died falling to the... VOID! :O");

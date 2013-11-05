@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TileGlue : MonoBehaviour {
 
-	public float drag = 0.7f;	
+	public float drag = 0.8f;	
 
 	void OnTriggerStay(Collider other) {
 		
