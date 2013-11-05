@@ -6,6 +6,8 @@ public class MovementMobile : MonoBehaviour {
 		
 	public float speed = 20.0f;
 	
+	public float maxForce = 12.5f;
+	
 	// From the doc: http://docs.unity3d.com/Documentation/Manual/Input.html#AndroidInput
 	void Update () {
 		// If we are not on Mobile we exit
@@ -24,11 +26,19 @@ public class MovementMobile : MonoBehaviour {
 		
 		// We clean noise from the device.
 		if (!(dir.sqrMagnitude <= 0.05)){
-			// We make it easier to control.
-			// Add a flat amount in the same direction of the vector
+			
+			// We make it easier to control adding a flat amount in the same direction of the vector
 			dir += dir.normalized * 0.1f;
+			
+			// We calculate the force to apply
+			Vector3 force = dir * speed;
+		
+			if (force.sqrMagnitude > maxForce)
+				// If the force is too big we nerf it
+				force = force.normalized * maxForce;
+			
 			// Apply a constant force to the ball
-			constantForce.force = dir * speed;
+			constantForce.force = force;
 		}
 	}
 }

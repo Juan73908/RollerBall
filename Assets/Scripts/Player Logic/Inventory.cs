@@ -19,17 +19,19 @@ public class Inventory : MonoBehaviour {
 			diamondsCollected += 1;
 			Destroy(other.gameObject);
 			
-			if(Application.loadedLevel < Levels.count)
-				// Load next level if there is
-				Invoke("NextLevel", 2.0f);
-			else
-				Debug.Log("You finished the game :D");
+			Invoke("NextLevel", 2.0f);
 		}
 	}
 	
 	// Call the next level with delay
 	void NextLevel(){
-		Application.LoadLevel(Application.loadedLevel + 1);
+		if(Application.loadedLevel < Levels.count){
+			// Load next level
+			Application.LoadLevel(Application.loadedLevel + 1);
+		}else {
+			// Or if finished the game return to load screen
+			Application.LoadLevel(Levels.levelSelect);
+		}
 	}
 	
 	// Getter

@@ -3,13 +3,13 @@ using System.Collections;
 
 public class LevelSelect : MonoBehaviour {
 	
-	protected int rows = 4;
-	protected int columns = 5;
+	protected int rows = 6;
+	protected int columns = 3;
 	
 	protected int marginLeft = 100;
 	protected int marginRight = 100;
 	protected int marginUp = 100;
-	protected int marginDown = 10;
+	protected int marginDown = 20;
 	
 	protected int innerGap = 10;
 	

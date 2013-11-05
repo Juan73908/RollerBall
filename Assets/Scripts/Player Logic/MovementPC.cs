@@ -5,6 +5,8 @@ public class MovementPC : MonoBehaviour {
 	
 	public float speed = 20.0f;
 	
+	public float maxForce = 12.5f;
+	
 	// Use this for initialization
 	void Start () {
 	
@@ -14,7 +16,15 @@ public class MovementPC : MonoBehaviour {
 	void FixedUpdate () {
 		float hx = Input.GetAxis("Horizontal");
 		float hz = Input.GetAxis("Vertical");
-		constantForce.force = new Vector3(speed * hx, 0, speed * hz);
+		
+		// We calculate the force to apply
+		Vector3 force = new Vector3(speed * hx, 0, speed * hz);
+		
+		if (force.sqrMagnitude > maxForce)
+			// If the force is too big we nerf it
+			force = force.normalized * maxForce;
+		
+		constantForce.force = force;
 		
 	}
 }

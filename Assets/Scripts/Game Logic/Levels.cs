@@ -23,10 +23,8 @@ public class Levels : MonoBehaviour {
 	public const string level16 = "L16";
 	public const string level17 = "L17";
 	public const string level18 = "L18";
-	public const string level19 = "L19";
-	public const string level20 = "L20";
 	
-	public const int count = 20;
+	public const int count = 18;
 	
 	public static string GetLevelName(int levelNumber){
 		return "L" + levelNumber.ToString();
