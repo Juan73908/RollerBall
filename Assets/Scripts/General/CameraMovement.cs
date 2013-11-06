@@ -10,7 +10,7 @@ public class CameraMovement : MonoBehaviour {
 	protected Vector3 relCameraPos;
 	protected Vector3 newPos;
 	
-	void Awake()
+	void Start()
 	{
 		player = GameObject.FindGameObjectWithTag(Tags.player);
 		relCameraPos = new Vector3( 0.0f, 12.0f, -7.5f);

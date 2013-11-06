@@ -16,8 +16,34 @@ public class LevelSelect : MonoBehaviour {
 	protected int buttonHeight;
 	protected int buttonWidth;
 	
+	protected int ballButtonSize;
+	
+	public Texture basketballTexture;
+	public Texture footballTexture;
+	public Texture rugbyballTexture;
+	
 	
     void OnGUI() {
+		// Calculate the size of the square ball buttons
+		ballButtonSize = Mathf.Min( marginUp - (marginDown * 2), 
+									(Screen.width - (marginLeft - marginRight - (innerGap * 2)) / 3));
+		
+		// Add the buttons for the ball selection
+		for (int i = 0; i < 3; i++){
+			// Select the color
+			if (PlayerPrefs.GetInt(Prefs.ballSelection) == i){
+				GUI.backgroundColor = Color.black;
+			}
+		
+			// Create the button
+			if (GUI.Button(new Rect(Screen.width - marginRight - ((ballButtonSize + innerGap)* (3 - i)), 
+									marginDown, ballButtonSize, ballButtonSize), getButtonTexture(i)))
+	        	PlayerPrefs.SetInt(Prefs.ballSelection, i);
+			
+			// Revert the color
+			GUI.backgroundColor = Color.white;
+		}
+		
 		// Calculate the size of the buttons
 		buttonWidth = (Screen.width - marginLeft - marginRight) / rows - innerGap;
 		buttonHeight = (Screen.height - marginUp - marginDown) / columns - innerGap;
@@ -43,4 +69,20 @@ public class LevelSelect : MonoBehaviour {
 			}
 		}        
     }
+	
+	// Helper function to define textures of the buttons
+	Texture getButtonTexture(int id){
+		
+		if(id == Prefs.basketball)
+			return basketballTexture;
+		
+		else if (id == Prefs.football)
+			return footballTexture;
+		
+		else if (id == Prefs.rugbyball)
+			return rugbyballTexture;
+		
+		// Just in case
+		return basketballTexture;
+	}
 }
