@@ -3,8 +3,16 @@ using System.Collections;
 
 public class Inventory : MonoBehaviour {
 	
-	protected int keysCollected = 0;
-	protected int diamondsCollected = 0;
+	public static int keysCollected = 0;
+	public static int diamondsCollected = 0;
+	
+	public static bool levelCompleted = false;
+	
+	void Awake(){
+		keysCollected = 0;
+		diamondsCollected = 0;
+		levelCompleted = false;
+	}
 	
 	// We check triggers with the keys to collect them
 	void OnTriggerEnter(Collider other)
@@ -23,6 +31,7 @@ public class Inventory : MonoBehaviour {
 			PlayerPrefs.SetInt(Prefs.lastCompletedLevel,
 					Mathf.Max(PlayerPrefs.GetInt(Prefs.lastCompletedLevel), Application.loadedLevel));
 			// Level UP!
+			levelCompleted = true;
 			Invoke("NextLevel", 2.0f);
 		}
 	}
@@ -36,11 +45,5 @@ public class Inventory : MonoBehaviour {
 			// Or if finished the game return to load screen
 			Application.LoadLevel(Levels.levelSelect);
 		}
-	}
-	
-	// Getter
-	public int GetKeysCollected ()
-	{
-		return keysCollected;
 	}
 }
