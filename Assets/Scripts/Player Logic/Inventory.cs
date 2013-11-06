@@ -8,10 +8,14 @@ public class Inventory : MonoBehaviour {
 	
 	public static bool levelCompleted = false;
 	
+	protected AudioSource audioSource;
+	
 	void Awake(){
 		keysCollected = 0;
 		diamondsCollected = 0;
 		levelCompleted = false;
+		
+		audioSource = gameObject.AddComponent<AudioSource>();
 	}
 	
 	// We check triggers with the keys to collect them
@@ -21,12 +25,25 @@ public class Inventory : MonoBehaviour {
 		{
 			keysCollected += 1;
 			Destroy(other.gameObject);
+			
+			// Play sound
+   	 		audioSource.clip = Resources.Load(Res.key) as AudioClip;
+			if((audioSource.isPlaying == false) && (audioSource.clip != null)){
+    			audioSource.minDistance = 100.0f;
+				audioSource.Play();
+			}
 		} 
 		else if (other.tag == Tags.diamond && !PlayerStatus.dead)
 		{
 			diamondsCollected += 1;
 			Destroy(other.gameObject);
 				
+			// Play sound
+   	 		audioSource.clip = Resources.Load(Res.diamond) as AudioClip;
+			if((audioSource.isPlaying == false) && (audioSource.clip != null)){
+    			audioSource.minDistance = 100.0f;
+				audioSource.Play();
+			}
 			// Set the level progression
 			PlayerPrefs.SetInt(Prefs.lastCompletedLevel,
 					Mathf.Max(PlayerPrefs.GetInt(Prefs.lastCompletedLevel), Application.loadedLevel));

@@ -8,6 +8,12 @@ public class ExplosionMine: MonoBehaviour {
     public float upwardsModifier = 1.0f;
 	public ParticleSystem explosionParticles;
 	
+	protected AudioSource audioSource;
+	
+	void Awake() {
+		audioSource = gameObject.AddComponent<AudioSource>();
+	}
+	
     void OnTriggerEnter(Collider other) {
 		
         Vector3 explosionPos = transform.position;
@@ -20,6 +26,13 @@ public class ExplosionMine: MonoBehaviour {
                 hit.rigidbody.AddExplosionForce(power, explosionPos, radius, upwardsModifier);
 				// Generate explosion
 				explosionParticles.Play();
+				
+				// Play sound
+   	 			audioSource.clip = Resources.Load(Res.mine) as AudioClip;
+				if((audioSource.isPlaying == false) && (audioSource.clip != null)){
+    				audioSource.minDistance = 100.0f;
+					audioSource.Play();
+				}
 			}
 		}
 		Debug.Log (other);
