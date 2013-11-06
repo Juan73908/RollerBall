@@ -50,7 +50,10 @@ public class LevelSelect : MonoBehaviour {
 		
 		int curLevel = 1;
 		
-		// This is ugly and hardcoded, but there is no simple way to do it with unity
+		// Set the color of the available buttons
+		GUI.backgroundColor = Color.green;
+		
+		// This is ugly, but there is no simple way to do it with unity
 		for (int i = 1; i <= columns; i++){
 			for (int j = 1; j <= rows; j++){
 				
@@ -60,6 +63,12 @@ public class LevelSelect : MonoBehaviour {
 				int yPos = marginUp +
 						((Screen.height - marginUp - marginDown) / columns) * (i - 1) + innerGap /2;
 				
+				// Calculate the color of the buttons
+				if (curLevel > PlayerPrefs.GetInt(Prefs.lastCompletedLevel) + 1){
+					GUI.backgroundColor = Color.red;
+					GUI.enabled = false;
+				}
+				
 				// Add the buttons
 				if (GUI.Button(new Rect( xPos, yPos, buttonWidth, buttonHeight), "Level " + curLevel))
 					// Add the action of the buttons
@@ -67,7 +76,11 @@ public class LevelSelect : MonoBehaviour {
 				
 				curLevel += 1;
 			}
-		}        
+		}
+		
+		// Revert the color
+		GUI.backgroundColor = Color.white;
+		GUI.enabled = true;
     }
 	
 	// Helper function to define textures of the buttons

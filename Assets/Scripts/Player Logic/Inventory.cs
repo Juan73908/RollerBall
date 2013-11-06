@@ -18,13 +18,17 @@ public class Inventory : MonoBehaviour {
 		{
 			diamondsCollected += 1;
 			Destroy(other.gameObject);
-			
+				
+			// Set the level progression
+			PlayerPrefs.SetInt(Prefs.lastCompletedLevel,
+					Mathf.Max(PlayerPrefs.GetInt(Prefs.lastCompletedLevel), Application.loadedLevel));
+			// Level UP!
 			Invoke("NextLevel", 2.0f);
 		}
 	}
 	
 	// Call the next level with delay
-	void NextLevel(){
+	void NextLevel(){		
 		if(Application.loadedLevel < Levels.count){
 			// Load next level
 			Application.LoadLevel(Application.loadedLevel + 1);
