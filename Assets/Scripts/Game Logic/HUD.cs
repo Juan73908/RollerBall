@@ -4,6 +4,8 @@ using System.Collections;
 public class HUD : MonoBehaviour {
 	
     public Texture pauseButtonTexture;
+    public Texture soundONTexture;
+    public Texture soundOFFTexture;
 	
 	public bool paused = false;
 	
@@ -31,12 +33,26 @@ public class HUD : MonoBehaviour {
 		// Display the current level
 		GUI.Label(new Rect(50, 20, 100, 20), "Level " + Application.loadedLevel, guiStyleLevel);
 		
-        // Create the button
+        // Create the pause button
         if (GUI.Button(new Rect (Screen.width - 100,Screen.height - 100, 100, 100), pauseButtonTexture)){
 			if (!paused){
 				Pause();
 			} else {
 				Resume();
+			}
+		}
+		
+		// Create the sound button
+		if (PlayerPrefs.GetInt(Prefs.sound) == Prefs.on){
+			AudioListener.pause = true;
+	        if (GUI.Button(new Rect ( 0 ,Screen.height - 100, 100, 100), soundONTexture)){
+				PlayerPrefs.SetInt(Prefs.sound, Prefs.off);
+			}
+		}
+		if (PlayerPrefs.GetInt(Prefs.sound) == Prefs.off){
+			AudioListener.pause = false;
+	        if (GUI.Button(new Rect ( 0 ,Screen.height - 100, 100, 100), soundOFFTexture)){
+				PlayerPrefs.SetInt(Prefs.sound, Prefs.on);
 			}
 		}
 		

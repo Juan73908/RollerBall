@@ -4,6 +4,7 @@ using System.Collections;
 public class GameMusic : MonoBehaviour {
 	
 	protected static GameMusic instance;
+	
 	public AudioClip song;
 	
 	protected GameObject player;
