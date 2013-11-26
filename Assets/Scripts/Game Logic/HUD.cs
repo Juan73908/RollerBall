@@ -43,16 +43,16 @@ public class HUD : MonoBehaviour {
 		}
 		
 		// Create the sound button
-		if (PlayerPrefs.GetInt(Prefs.sound) == Prefs.on){
+		if (PlayerPrefs.GetInt(Prefs.sound) == Prefs.off){
 			AudioListener.pause = true;
 	        if (GUI.Button(new Rect ( 0 ,Screen.height - 100, 100, 100), soundONTexture)){
-				PlayerPrefs.SetInt(Prefs.sound, Prefs.off);
+				PlayerPrefs.SetInt(Prefs.sound, Prefs.on);
 			}
 		}
-		if (PlayerPrefs.GetInt(Prefs.sound) == Prefs.off){
+		if (PlayerPrefs.GetInt(Prefs.sound) == Prefs.on){
 			AudioListener.pause = false;
 	        if (GUI.Button(new Rect ( 0 ,Screen.height - 100, 100, 100), soundOFFTexture)){
-				PlayerPrefs.SetInt(Prefs.sound, Prefs.on);
+				PlayerPrefs.SetInt(Prefs.sound, Prefs.off);
 			}
 		}
 		
