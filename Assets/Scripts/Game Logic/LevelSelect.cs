@@ -21,13 +21,23 @@ public class LevelSelect : MonoBehaviour {
 	public Texture basketballTexture;
 	public Texture footballTexture;
 	public Texture rugbyballTexture;
-	
+	public Texture googlePlayTexture;
+
+	public string googlePlayURL;
 	
     void OnGUI() {
 		// Calculate the size of the square ball buttons
 		ballButtonSize = Mathf.Min( marginUp - (marginDown * 2), 
 									(Screen.width - (marginLeft - marginRight - (innerGap * 2)) / 3));
-		
+
+		// Add the googlePlay button
+		if (GUI.Button(new Rect(marginLeft + innerGap/2, marginDown, ballButtonSize * 4, ballButtonSize), googlePlayTexture))
+#if UNITY_WEBPLAYER
+			Application.ExternalEval("window.open('" + googlePlayURL + "','_blank')");
+#else
+			Application.OpenURL(googlePlayURL);
+#endif
+
 		// Add the buttons for the ball selection
 		for (int i = 0; i < 3; i++){
 			// Select the color
